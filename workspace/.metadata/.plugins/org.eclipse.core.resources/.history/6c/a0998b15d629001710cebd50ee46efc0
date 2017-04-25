@@ -1,0 +1,12 @@
+
+public interface Piece {
+	public boolean checkBorder(piece Piece);
+	public void movePiece(int x, int y);
+	public void rotatePiece(int theta);
+	public boolean pausePiece(piece Piece);
+	public boolean makeStationary(piece Piece);
+	
+	public void attach(Observer o);
+	public void detach(Observer o);
+	public void notify();
+}

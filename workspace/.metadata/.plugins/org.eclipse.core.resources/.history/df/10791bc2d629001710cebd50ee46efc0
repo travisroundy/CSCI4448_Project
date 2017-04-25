@@ -1,0 +1,47 @@
+
+public class PieceClient implements Piece {
+
+	public boolean isStationary;
+	public boolean isActive;
+	public int currentX;
+	public int currentY;
+	public int currentTheta;
+	
+	public boolean checkBorder(Piece piece) {
+		return true;
+	}
+	
+	public void movePiece(int x, int y) {
+		
+	}
+	
+	public void rotatePiece(int theta) {
+		
+	}
+	
+	public boolean pausePiece(Piece piece) {
+		return true;
+	}
+	
+	public boolean makeStationary(Piece piece) {
+		return true;
+	}
+
+	@Override
+	public void attach(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void detach(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObserver() {
+		// TODO Auto-generated method stub
+		
+	}
+}

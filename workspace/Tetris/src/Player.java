@@ -5,4 +5,12 @@ public class Player {
 	public int highscore;
 	public int longestGame;
 	
+	public int getHighScore() {
+		return highscore;
+	}
+	
+	public int getLongestGame() {
+		return longestGame;
+	}
+	
 }
