@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 public class PieceClient {
 
 	public boolean isStationary;
@@ -5,8 +7,6 @@ public class PieceClient {
 	private int currentX;
 	private int currentY;
 	private int currentTheta;
-	
-	private static final char letters[] = {'I', 'J', 'L', 'O', 'S', 'T', 'Z'};
 	
 	
 	public int getCurrentX() {
@@ -24,15 +24,6 @@ public class PieceClient {
 	public void setCurrentY(int currentY) {
 		this.currentY = currentY;
 	}
-	
-	//while game on
-		//Tetronomis tetronomis = (Tetronomis)PieceFactory.getPiece(getRandomLetter());
-		//tetronomis.setTheta(getRandomTheta());
-	
-	
-	//private static int getRandomTheta()
-	
-	
 	
 	public boolean checkBorder(Piece piece) {
 		return true;
@@ -59,3 +50,43 @@ public class PieceClient {
 		return true;
 	}
 }
+=======
+
+public class PieceClient {
+
+	public boolean isStationary;
+	public boolean isActive;
+	public int currentX;
+	public int currentY;
+	public int currentTheta;
+	
+	private static final char letters[] = {"I", "J", "L", "O", "S", "T", "Z"};
+	
+	//while game on
+		//Tetronomis tetronomis = (Tetronomis)PieceFactory.getPiece(getRandomLetter());
+		//tetronomis.setTheta(getRandomTheta());
+	
+	
+	//private static int getRandomTheta()
+	
+	public boolean checkBorder(Piece piece) {
+		return true;
+	}
+	
+	public void movePiece(int x, int y) {
+		
+	}
+	
+	public void rotatePiece(int theta) {
+		
+	}
+	
+	public boolean pausePiece(Piece piece) {
+		return true;
+	}
+	
+	public boolean makeStationary(Piece piece) {
+		return true;
+	}
+}
+>>>>>>> cbd0dee0b286fceeba24905c8dc17e96a92ca046

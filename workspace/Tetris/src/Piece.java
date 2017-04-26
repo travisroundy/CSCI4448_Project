@@ -1,5 +1,6 @@
 
 public interface Piece {
+	
 	public boolean checkBorder(Piece piece);
 	public void movePiece(int x, int y);
 	public void rotatePiece(int theta);
