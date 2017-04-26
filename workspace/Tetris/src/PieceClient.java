@@ -7,6 +7,15 @@ public class PieceClient {
 	public int currentY;
 	public int currentTheta;
 	
+	private static final char letters[] = {"I", "J", "L", "O", "S", "T", "Z"};
+	
+	//while game on
+		//Tetronomis tetronomis = (Tetronomis)PieceFactory.getPiece(getRandomLetter());
+		//tetronomis.setTheta(getRandomTheta());
+	
+	
+	//private static int getRandomTheta()
+	
 	public boolean checkBorder(Piece piece) {
 		return true;
 	}
