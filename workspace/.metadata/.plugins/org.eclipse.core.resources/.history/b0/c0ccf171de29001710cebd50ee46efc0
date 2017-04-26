@@ -1,0 +1,26 @@
+
+public class PieceObserver implements Observer {
+	private boolean observerState;
+
+
+	public void addObs(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removeObs(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void notifyObs() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateObs() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

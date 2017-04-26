@@ -1,5 +1,8 @@
+import java.util.ArrayList;
 
 public class PieceImp implements Piece {
+	private ArrayList<Observer> pieces = new ArrayList<Observer>();
+	
 	public boolean completeRow;
 	public Object pieceGraphics;
 	
@@ -24,12 +27,12 @@ public class PieceImp implements Piece {
 	}
 	
 	public void attach(Observer o) {
-		
+		pieces.add(o);
 	}
 	public void detach(Observer o) {
-		
+		pieces.remove(o);
 	}
 	public void notifyObserver() {
-		
+		// Notify pieces
 	}
 }

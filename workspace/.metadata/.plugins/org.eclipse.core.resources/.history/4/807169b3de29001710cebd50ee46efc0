@@ -1,0 +1,18 @@
+
+public class PieceObserver implements Observer {
+	
+	private Observer observer = null;
+
+	public void updateObs() {
+		// TODO Auto-generated method stub
+	}
+	
+	public PieceObserver(Observer o) {
+		this.observer = o;
+	}
+	
+	public void unsubscribe() {
+		
+	}
+	
+}

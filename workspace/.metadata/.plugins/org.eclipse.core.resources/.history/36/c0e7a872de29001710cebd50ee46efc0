@@ -1,0 +1,64 @@
+import java.util.ArrayList;
+
+public class PieceImp implements Piece, Observer {
+	private ArrayList<Observer> pieces = new ArrayList<Observer>();
+	
+	public boolean completeRow;
+	public Object pieceGraphics;
+	
+	public PieceImp() {
+	    
+	}
+	
+	public boolean checkBorder(Piece piece){
+		return false;
+	}
+	public void movePiece(int x, int y) {
+		
+	}
+	public void rotatePiece(int theta) {
+		
+	}
+	public boolean pausePiece(Piece piece) {
+		return true;
+	}
+	public boolean makeStationary(Piece piece) {
+		return true;
+	}
+	
+	public void attach(Observer o) {
+		
+	}
+	public void detach(Observer o) {
+		
+	}
+	public void notifyObserver() {
+		
+	}
+
+	@Override
+	public void addObs(Observer o) {
+		pieces.add(o);
+		
+	}
+
+	@Override
+	public void removeObs(Observer o) {
+		pieces.remove(o);
+		
+	}
+
+	@Override
+	public void notifyObs() {
+		for(Observer piece :pieces) {
+			piece.updateObs();
+		}
+		
+	}
+
+	@Override
+	public void updateObs() {
+		// TODO Auto-generated method stub
+		
+	}
+}

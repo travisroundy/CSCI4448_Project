@@ -3,20 +3,42 @@ public class PieceClient {
 
 	public boolean isStationary;
 	public boolean isActive;
-	public int currentX;
-	public int currentY;
-	public int currentTheta;
+	private int currentX;
+	private int currentY;
+	private int currentTheta;
+	
+	
+	public int getCurrentX() {
+		return currentX;
+	}
+
+	public void setCurrentX(int currentX) {
+		this.currentX = currentX;
+	}
+	
+	public int getCurrentY() {
+		return currentY;
+	}
+
+	public void setCurrentY(int currentY) {
+		this.currentY = currentY;
+	}
 	
 	public boolean checkBorder(Piece piece) {
 		return true;
 	}
 	
-	public void movePiece(int x, int y) {
-		
+	public void dropPiece() {
+		int newY = 2; //CHANGE, CHECK FOR STATIONARY PIECE BORDER
+		this.setCurrentY(newY);
+	}
+	
+	public void movePiece(int x) {
+		this.setCurrentX(this.getCurrentX() + x);
 	}
 	
 	public void rotatePiece(int theta) {
-		
+		this.currentTheta = (currentTheta + theta) % 360;
 	}
 	
 	public boolean pausePiece(Piece piece) {

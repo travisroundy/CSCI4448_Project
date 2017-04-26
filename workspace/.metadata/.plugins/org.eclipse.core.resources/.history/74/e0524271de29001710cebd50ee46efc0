@@ -1,0 +1,7 @@
+
+public interface Observer {
+	public void addObs(Observer o);
+	public void removeObs(Observer o);
+	public void notifyObs();
+	public void updateObs();
+}

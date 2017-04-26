@@ -1,0 +1,8 @@
+
+public class PieceFactory {
+	private boolean[][] pieceList = new boolean [2][4];
+	
+	public void getPiece() {
+		//return piece
+	}
+}
