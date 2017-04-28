@@ -1,9 +1,9 @@
 import java.util.HashMap;
 
 public class PieceFactory {
-	private static final HashMap<char, Piece> tetronimoMap = new HashMap();
+	private static final HashMap<String, Piece> tetrominoMap = new HashMap();
 		
-	public static Piece getTetromino(char letter) {
+	public static Piece getTetromino(String letter) {
 		//attempt to get piece from map
 		Tetromino tetromino = (Tetromino)tetrominoMap.get(letter);
 		

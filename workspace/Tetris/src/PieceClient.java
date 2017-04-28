@@ -1,13 +1,14 @@
 public class PieceClient {
-
+	/*
+	 * Call to make new pieces here
+	 */
 	public boolean isStationary;
 	public boolean isActive;
 	private int currentX;
 	private int currentY;
 	private int currentTheta;
 	
-	private static final char letters[] = {'I', 'J', 'L', 'O', 'S', 'T', 'Z'};
-	
+	private static final String letters[] = {"I", "J", "L", "O", "S", "T", "Z", " "};
 	
 	public int getCurrentX() {
 		return currentX;
@@ -26,13 +27,13 @@ public class PieceClient {
 	}
 	
 	//while game on
-		//Tetronomis tetronomis = (Tetronomis)PieceFactory.getPiece(getRandomLetter());
-		//tetronomis.setTheta(getRandomTheta());
+		//Tetrominos tetrominos = (Tetrominos)PieceFactory.getPiece(getRandomLetter());
+		//tetrominos.setTheta(getRandomTheta());
 	
 	
 	//private static int getRandomTheta()
 	
-	
+	//private static int getRandomLetter()
 	
 	public boolean checkBorder(Piece piece) {
 		return true;
@@ -46,10 +47,24 @@ public class PieceClient {
 	public void movePiece(int x) {
 		this.setCurrentX(this.getCurrentX() + x);
 	}
-	
-	public void rotatePiece(int theta) {
-		this.currentTheta = (currentTheta + theta) % 360;
+
+	/*
+	public void rotatePiece() {
+		//this.currentTheta = (currentTheta + theta) % 360;
+		//or
+		//rotate 90 degrees (left)
+		if (tetromino.letter == "O")
+			return this;
+		
+		Piece newRotation = new Piece();
+		newRotation.tetromino = tetromino;
+		
+		for (int i =0; i < 4; ++i) {
+			newRotation.setX(i, y(i));
+			newRotation.setY(i, -x(i));
+		}
 	}
+	*/
 	
 	public boolean pausePiece(Piece piece) {
 		return true;
