@@ -1,0 +1,56 @@
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+public class MainMenu {
+	public static void main(String[] argv) throws SQLException {
+		Connection dbConnect;
+		Statement dbQuery;
+		
+		try {
+
+			Class.forName("org.postgresql.Driver");
+
+		} catch (ClassNotFoundException e) {
+
+			System.out.println("PostgreSQL JDBC Driver Not Found.");
+			e.printStackTrace();
+			return;
+		}
+		
+		try {
+
+			dbConnect = DriverManager.getConnection("jdbc:postgresql://128.138.170.48:5432/tetris", "postgres", "postgres");
+
+		} catch (SQLException e) {
+
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return;
+		}
+
+		if (dbConnect != null) {
+			dbQuery = dbConnect.createStatement();
+	         ResultSet rs = dbQuery.executeQuery( "SELECT * FROM USERS;" );
+	         while ( rs.next() ) {
+	            int id = rs.getInt("id");
+	            String  name = rs.getString("name");
+	            String password  = rs.getString("password");
+	            String  high_score = rs.getString("high_score");
+	            String longest_game = rs.getString("longest_game");
+	            System.out.println( "ID = " + id );
+	            System.out.println( "NAME = " + name );
+	            System.out.println( "PASSWORD = " + password );
+	            System.out.println( "HIGH_SCORE = " + high_score );
+	            System.out.println( "LONGEST_GAME = " + longest_game );
+	            System.out.println();
+	         }
+			
+		} else {
+			System.out.println("Failed to make connection!");
+		}
+	}
+
+}

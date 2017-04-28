@@ -19,7 +19,27 @@ public class Tetromino implements Piece {
 	private String letter;
 	public Point[] m;
 	public Point[] points;
-	//private int theta;
+	public boolean isStationary;
+	public boolean isActive;
+	private int currentX;
+	private int currentY;
+	private int currentRotation;
+	
+	public int getCurrentX() {
+		return currentX;
+	}
+
+	public void setCurrentX(int currentX) {
+		this.currentX = currentX;
+	}
+	
+	public int getCurrentY() {
+		return currentY;
+	}
+
+	public void setCurrentY(int currentY) {
+		this.currentY = currentY;
+	}
 	
 	//have 1 concrete class for Tetrominoes
 	public Tetromino(String letter) {
@@ -123,8 +143,13 @@ public class Tetromino implements Piece {
 	public boolean checkBorder(Piece piece){
 		return false;
 	}
-	public void movePiece(int x, int y) {
-		
+	public void dropPiece() {
+		int newY = 2; //CHANGE, CHECK FOR STATIONARY PIECE BORDER
+		this.setCurrentY(newY);
+	}
+	
+	public void movePiece(int x) {
+		this.setCurrentX(this.getCurrentX() + x);
 	}
 	
 	public Tetromino rotatePiece() {
