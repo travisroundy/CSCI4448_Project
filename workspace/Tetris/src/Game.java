@@ -12,20 +12,20 @@ public class Game extends JFrame{
 	public String currentPlayer;
 	public int[] currentPieces;
 	public int score;
-	public final int windowHeight = 30;
-	public final int windowWidth = 10;
-	public boolean[][] border = new boolean[30][10]; 
+	//public final int windowHeight = 120;
+	//public final int windowWidth = 40;
+	//public boolean[][] border = new boolean[30][10]; 
 	
 	JLabel status;
 	
 	public Game() {
 		status = new JLabel(" 0");
-		add(status, BorderLayout.SOUTH);
+		add(status, BorderLayout.NORTH);
 		Grid grid = new Grid(this);
 		add(grid);
 		grid.start();
 		
-		setSize(200, 400);
+		setSize(300, 600);
 		setTitle("Tetris");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
