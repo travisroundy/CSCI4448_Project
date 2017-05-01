@@ -18,7 +18,7 @@ public class Game extends JFrame{
 		Grid grid = new Grid(this);
 		add(grid);
 		grid.start(); 
-		setSize(300, 600);
+		setSize(400, 600);
 		setTitle("Tetris");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}

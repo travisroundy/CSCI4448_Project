@@ -30,8 +30,11 @@ public class Grid extends JPanel implements ActionListener, Observer {
 	int score = 0;
 	int x = 0;
 	int y = 0;
+	int xNext = 0;
+	int yNext = 0;
 	JLabel status;
 	Tetromino activeTetro;
+	Tetromino nextTetro;
 	Color[][] grid;
 	KeyStrokes strokes;
 	
@@ -58,6 +61,7 @@ public class Grid extends JPanel implements ActionListener, Observer {
 		score = 0;
 		clearGrid();
 		newPiece();
+		setActivePiece();
 		timer.start();
 	}
 	
@@ -72,7 +76,7 @@ public class Grid extends JPanel implements ActionListener, Observer {
 		}
 		else {
 			timer.start();
-			status.setText("Score: " + String.valueOf(score) + ", Time: " + String.valueOf(timer));
+			status.setText("Score: " + String.valueOf(score));
 		}
 		
 		repaint();
@@ -90,15 +94,25 @@ public class Grid extends JPanel implements ActionListener, Observer {
 	}
 	
 	int blockWidth() {
-		return (int) getSize().getWidth() / Width;
+		int size = (int) getSize().getWidth();
+		return (int) (size - size/3) / Width;
 	}
 	
 	Color blockAt(int x, int y) {
 		return grid[x][y];
 	}
 	
+	//display what piece will have next
 	private void newPiece(){
-		activeTetro = (Tetromino)PieceFactory.getTetromino(getRandomLetter()); 
+		nextTetro = (Tetromino)PieceFactory.getTetromino(getRandomLetter()); 
+		xNext = Width + Width/3;
+		yNext = Height - Height/2 +1 + nextTetro.minY();
+		nextTetro.setX(yNext);
+	}
+	
+	//get the next piece on the grid 
+	private void setActivePiece(){
+		activeTetro = nextTetro; 
 		x = Width/2 + 1;
 		y = Height - 1 + activeTetro.minY();
 		activeTetro.setX(x);
@@ -111,8 +125,10 @@ public class Grid extends JPanel implements ActionListener, Observer {
 			System.out.println("Final y: " + y);
 			status.setText("Game Over, final score: " + String.valueOf(score));
 		}
-	}
 		
+		newPiece();
+	}	
+	
 	//called when piece hits bottom border or top of a resting piece
 	private void makeStationary() {
 		Color color = activeTetro.getColor();
@@ -128,7 +144,7 @@ public class Grid extends JPanel implements ActionListener, Observer {
 		//check if new stationary piece completed a row 
 		completeRow();
 		
-		newPiece();
+		setActivePiece();
 	}
 	
 	private void down() {
@@ -160,7 +176,7 @@ public class Grid extends JPanel implements ActionListener, Observer {
 		
 		if (numRows > 0) {
 			score += numRows^2 * 100; //scale points to number of rows completed at once
-			status.setText("Score: " + String.valueOf(score) + ", Time: " + String.valueOf(timer));
+			status.setText("Score: " + String.valueOf(score));
 			//isFalling = false;
 			activeTetro = null;
 			repaint();
@@ -217,6 +233,17 @@ public class Grid extends JPanel implements ActionListener, Observer {
 			}
 				
 		}
+		
+		//paint the next piece in queue 
+		if (nextTetro != null) {
+			Color color = nextTetro.getColor();
+			Point[] points = nextTetro.getPoints();
+			for (int i = 0; i < 4; ++i) {
+				int X = xNext + points[i].x;
+				int Y = yNext - points[i].y;
+				displayNextPiece(g, X*w, Y*h, color);
+			}	
+		}
 	}
 	
 	private void drawBlock(Graphics g, int x, int y, Color color) { 
@@ -242,6 +269,23 @@ public class Grid extends JPanel implements ActionListener, Observer {
 		g.setColor(Color.BLACK);
 		g.fillRect(x+1, y+1, w-1, h-1);
 	}    
+	
+	private void displayNextPiece(Graphics g, int x, int y, Color color) {
+		int w = blockWidth();
+		int h = blockHeight();
+		g.setColor(color);
+		g.fillRect(x+1, y+1, w-2, h-2);
+		
+		//outline the blocks
+		g.setColor(color.brighter());
+		g.drawLine(x, y+h-1, x, y);
+		g.drawLine(x, y, x+w-1, y);
+		
+		g.setColor(color.darker());
+		g.drawLine(x+1, y+h-1, x+w-1, y+h-1);
+		g.drawLine(x+w-1, y+h-1, x+w-1, y+1);		
+	}
+	
 	
 	public void actionPerformed(ActionEvent e) {
 		down();
