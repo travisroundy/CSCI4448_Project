@@ -1,28 +1,17 @@
-import java.util.ArrayList;
 import java.awt.Point;
-import java.util.Random;
 import java.awt.Color;
 import java.lang.Math;
 
 public class Tetromino implements Piece {
 	/*
 	 * Specify what type of pieces here
-	 * Take care of setting initial values x, y, rotation, etc.
-	 * 
+	 * Take care of setting initial values x, y, rotation, etc. & updating
 	 */
-	private ArrayList<Observer> pieces = new ArrayList<Observer>();
 	
-	public boolean completeRow;
-	public Object pieceGraphics;
-	
-	//ideas from Flyweight tutorials 
 	private Color color;
 	private String letter;
-	public Point[] points;
-	public boolean isStationary;
-	public boolean isActive;
+	private Point[] points;
 	private int xOrigin;
-	private int currentRotation;
 	
 	//have 1 concrete class for Tetrominoes
 	public Tetromino(String letter) {
@@ -129,17 +118,6 @@ public class Tetromino implements Piece {
 		return min;
 	}	
 	
-	public boolean checkBorder(Piece piece){
-		return false;
-	}
-	public void dropPiece() {
-		
-	}
-	
-	public void movePiece(int x) {
-		
-	}
-	
 	public Tetromino rotatePiece() {
 		//square does not need to be rotated
 		if (this.letter == "O")
@@ -149,7 +127,7 @@ public class Tetromino implements Piece {
 		for (int i = 0; i < 4; ++i) {
 			int newX = this.xOrigin + this.points[i].y;
 			if (newX < 0 || newX >= 10)
-				return this; //dont allow rotation and return current orientation
+				return this; //don't allow rotation and return current orientation
 		}
 		
 		for (int i = 0; i < 4; ++i) {
@@ -168,27 +146,4 @@ public class Tetromino implements Piece {
 	public void setX(int X) {
 		this.xOrigin = X;
 	}
-	public boolean pausePiece(Piece piece) {
-		return true;
-	}
-	public boolean makeStationary(Piece piece) {
-		return true;
-	}
-	
-	public void attach(Observer o) {
-		pieces.add(o);
-	}
-	public void detach(Observer o) {
-		pieces.remove(o);
-	}
-	public void notifyObserver() {
-		// Notify pieces
-	}
-
-	@Override
-	public void movePiece(int x, int y) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -8,13 +8,7 @@ public class Game extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public int timer;
 	public String currentPlayer;
-	public int[] currentPieces;
-	public int score;
-	//public final int windowHeight = 120;
-	//public final int windowWidth = 40;
-	//public boolean[][] border = new boolean[30][10]; 
 	
 	JLabel status;
 	
@@ -23,8 +17,7 @@ public class Game extends JFrame{
 		add(status, BorderLayout.NORTH);
 		Grid grid = new Grid(this);
 		add(grid);
-		grid.start();
-		
+		grid.start(); 
 		setSize(300, 600);
 		setTitle("Tetris");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,40 +31,6 @@ public class Game extends JFrame{
 		Game game = new Game();
 		game.setLocationRelativeTo(null);
 		game.setVisible(true);
-	}
-	
-	
-	//other crap to add in later
-	
-	public void startTimer(int timer)
-	{
-		
-	}
-	
-	public void stopTimer(int timer)
-	{
-		
-	}
-	
-	public void displayPauseMenu(boolean pressedPause)
-	{
-		
-	}
-	
-	public void hidePauseMenu(boolean endPause)
-	{
-		
-	}
-	
-	public int endGame(boolean gameOver)
-	{
-		return 1;
-	}
-	
-	public int initializeScore()
-	{
-		//or nah
-		return 1;
 	}
 	
 	public void showNextPiece()

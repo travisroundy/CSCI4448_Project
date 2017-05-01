@@ -1,13 +1,11 @@
+import java.awt.Point;
+import java.awt.Color;
 
 public interface Piece {
 	
-	public boolean checkBorder(Piece piece);
-	public void movePiece(int x, int y);
+	public int minX();
+	public int minY();
 	public Tetromino rotatePiece();
-	public boolean pausePiece(Piece piece);
-	public boolean makeStationary(Piece piece);
-	
-	public void attach(Observer o);
-	public void detach(Observer o);
-	public void notifyObserver();
+	public Color getColor();
+	public Point[] getPoints();
 }
