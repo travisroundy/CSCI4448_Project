@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -105,14 +105,22 @@ public class Grid extends JPanel implements ActionListener, Observer {
 	//display what piece will have next
 	private void newPiece(){
 		nextTetro = (Tetromino)PieceFactory.getTetromino(getRandomLetter()); 
-		xNext = Width + Width/3;
+		xNext = Width + Width/4;
 		yNext = Height - Height/2 +1 + nextTetro.minY();
-		nextTetro.setX(yNext);
+		nextTetro.setX(xNext);
+		
+		//and start with a random rotation
+		int randomRot = ThreadLocalRandom.current().nextInt(0, 4);
+		for (int i = 0; i < randomRot; ++i) {
+			nextTetro.initialRotation();
+		}
 	}
 	
 	//get the next piece on the grid 
 	private void setActivePiece(){
-		activeTetro = nextTetro; 
+		Tetromino temp = nextTetro;
+		activeTetro = temp; 
+		nextTetro = null;
 		x = Width/2 + 1;
 		y = Height - 1 + activeTetro.minY();
 		activeTetro.setX(x);
@@ -175,7 +183,8 @@ public class Grid extends JPanel implements ActionListener, Observer {
 		}
 		
 		if (numRows > 0) {
-			score += numRows^2 * 100; //scale points to number of rows completed at once
+			//System.out.println("Number of rows completed: " + numRows);
+			score += Math.pow(numRows, 2) * 100; //scale points to number of rows completed at once
 			status.setText("Score: " + String.valueOf(score));
 			//isFalling = false;
 			activeTetro = null;
@@ -241,7 +250,7 @@ public class Grid extends JPanel implements ActionListener, Observer {
 			for (int i = 0; i < 4; ++i) {
 				int X = xNext + points[i].x;
 				int Y = yNext - points[i].y;
-				displayNextPiece(g, X*w, Y*h, color);
+				drawBlock(g, X*w, gridTop+(Height-Y-1)*h, color);
 			}	
 		}
 	}
@@ -269,23 +278,6 @@ public class Grid extends JPanel implements ActionListener, Observer {
 		g.setColor(Color.BLACK);
 		g.fillRect(x+1, y+1, w-1, h-1);
 	}    
-	
-	private void displayNextPiece(Graphics g, int x, int y, Color color) {
-		int w = blockWidth();
-		int h = blockHeight();
-		g.setColor(color);
-		g.fillRect(x+1, y+1, w-2, h-2);
-		
-		//outline the blocks
-		g.setColor(color.brighter());
-		g.drawLine(x, y+h-1, x, y);
-		g.drawLine(x, y, x+w-1, y);
-		
-		g.setColor(color.darker());
-		g.drawLine(x+1, y+h-1, x+w-1, y+h-1);
-		g.drawLine(x+w-1, y+h-1, x+w-1, y+1);		
-	}
-	
 	
 	public void actionPerformed(ActionEvent e) {
 		down();
